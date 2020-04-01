@@ -1,7 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect}from 'react';
 import '../css/Component-style.css';
 
 function Table(){
+
+  const [ users, setUsers ] = useState([]);
+  const user1 = users[0];
+  
+  useEffect(() => {
+    console.log("calling useEffect...")
+    getApiData();
+  })
+
+  async function getApiData(){
+    const apiResult = await fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json());
+    
+    console.log('API CALL >>> ', apiResult);
+
+    setUsers( apiResult) 
+  }
+
+  
+
+
   return (
     <div class="table-wrapper">
       <table class="table">

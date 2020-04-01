@@ -3,6 +3,7 @@ import '../css/Component-style.css';
 
 function Form() {
   const [ searchValue, setSearchValue ] = useState([]);
+  
 
   function handleInputChange( event ){
     const input = event.target.value;
@@ -13,6 +14,8 @@ function Form() {
   function handleSearch(){
     console.log('[SEARCH VALUE]', searchValue)
   };
+
+  
   
   
   return (
