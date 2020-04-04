@@ -42,6 +42,36 @@ function Search() {
     console.log('[SEARCH INPUT]', searchInput)
   };
 
+  
+
+  function sortUsersAsc(ev){
+    ev.preventDefault();
+    console.log("sorting users-asc")
+    const sortedUsers = showUsers.sort(function(a,b){
+      let nameA = a.name.toLowerCase();
+      let nameB = b.name.toLowerCase();
+        if(nameA < nameB )
+          return -1
+        if(nameA > nameB)
+          return 1
+      return 0
+    });
+    setShowUsers([ ...sortedUsers])
+  };
+  function sortUsersDsc(ev){
+    ev.preventDefault();
+    console.log("sorting users-dsc")
+    const sortedUsers = showUsers.sort(function(a,b){
+      let nameA = a.name.toLowerCase();
+      let nameB = b.name.toLowerCase();
+        if(nameA < nameB )
+          return 1
+        if(nameA > nameB)
+          return -1
+      return 0
+    });
+    setShowUsers([ ...sortedUsers])
+  };
 
   return (
     <>
@@ -52,23 +82,31 @@ function Search() {
               <button onClick={ ()=> {handleSearch()}} class="btn btn-outline-primary" type="button">Search</button>
           </div>
       </div>
+      <br />
+      <div>
+      <h3>Sort:</h3>
+      <button class="btn btn-sm btn-outline-primary" onClick={sortUsersAsc}>Sort-Asc</button>
+      <button class="btn btn-sm btn-outline-primary" onClick={sortUsersDsc}>Sort-Dsc</button>
+      </div>
+
+
     </form> 
-     <div class="table-wrapper">
-     <table class="table">
-       <thead class="thead-dark">
-         <tr>
-           <th scope="col">id</th>
-           <th scope="col">Name</th>
-           <th scope="col">username</th>
-           <th scope="col">Email</th>
-           <th scope="col">Phone#</th>
-         </tr>
-       </thead>
-       <tbody>
-         <Table showUsers={showUsers} />
-       </tbody>
-     </table>
-   </div>
+    <div class="table-wrapper">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <Table showUsers={showUsers} />
+      </tbody>
+    </table>
+  </div>
    </>
   );
 };
