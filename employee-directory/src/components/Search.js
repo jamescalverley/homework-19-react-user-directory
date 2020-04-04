@@ -8,40 +8,35 @@ function Search() {
   const [ searchInput, setSearchInput ] = useState("");
   
   useEffect(() => {
-
     getApiData();
   }, [])
 
   function handleInputChange( event ){
     const input = event.target.value;
-    console.log('[search input]', input)
+    //console.log('[search input]', input)
     
     if( input.length > 0){
-      console.log(">>>> filtering")
+      //console.log(">>>> filtering")
       let filteredUsers = allUsers.filter( user=> 
         user.name.toLowerCase().indexOf(input) !== -1  ||
         user.username.toLowerCase().indexOf(input) !== -1 ||
         user.email.toLowerCase().indexOf(input) !== -1 ||
         user.phone.replace(/[-]/,"").indexOf(input) !== -1)
-      console.log("filteredUsers:", filteredUsers )
+      //console.log("filteredUsers:", filteredUsers )
       setShowUsers([ ...filteredUsers] );
     } else {
       setShowUsers( allUsers )
     }
-    
     setSearchInput( input );
   };
 
   async function getApiData(){
     const apiResult = await fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json());
-    
     console.log('API CALL >>> ', apiResult);
-
     setAllUsers( apiResult ) 
     setShowUsers( apiResult )
-
-  }
+  };
 
   function handleSearch(){
     console.log('[SEARCH INPUT]', searchInput)
@@ -49,7 +44,6 @@ function Search() {
 
 
   return (
-    //! use <form onSubmit={}> </form> rather than button on click. Will now work with enter
     <>
     <form>
       <div class="input-group">
@@ -71,25 +65,7 @@ function Search() {
          </tr>
        </thead>
        <tbody>
-         {/* <Table searchInput={searchInput} /> */}
-         {/* { allUsers.map( user => 
-            <tr>
-              <th scope="row">{user.id}</th>
-              <td>{user.name}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
-            </tr>
-          )} */}
-          { showUsers.map( user => 
-            <tr>
-              <th scope="row">{user.id}</th>
-              <td>{user.name}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
-            </tr>
-          )}
+         <Table showUsers={showUsers} />
        </tbody>
      </table>
    </div>
