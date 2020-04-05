@@ -14,7 +14,6 @@ function Search() {
   function handleInputChange( event ){
     const input = event.target.value;
     //console.log('[search input]', input)
-    
     if( input.length > 0){
       //console.log(">>>> filtering")
       let filteredUsers = allUsers.filter( user=> 
@@ -41,8 +40,6 @@ function Search() {
   function handleSearch(){
     console.log('[SEARCH INPUT]', searchInput)
   };
-
-  
 
   function sortUsersAsc(ev){
     ev.preventDefault();
@@ -72,7 +69,6 @@ function Search() {
     });
     setShowUsers([ ...sortedUsers])
   };
-
   return (
     <>
     <form>
@@ -83,13 +79,11 @@ function Search() {
           </div>
       </div>
       <br />
-      <div>
-      <h3>Sort:</h3>
-      <button class="btn btn-sm btn-outline-primary" onClick={sortUsersAsc}>Sort-Asc</button>
-      <button class="btn btn-sm btn-outline-primary" onClick={sortUsersDsc}>Sort-Dsc</button>
+      <div class="sort">
+      Sort:
+      <button class="btn btn-sm btn-outline-primary" onClick={sortUsersAsc}><i class="fas fa-angle-up"></i></button>
+      <button class="btn btn-sm btn-outline-primary" onClick={sortUsersDsc}><i class="fas fa-angle-down"></i></button>
       </div>
-
-
     </form> 
     <div class="table-wrapper">
     <table class="table">
