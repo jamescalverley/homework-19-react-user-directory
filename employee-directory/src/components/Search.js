@@ -3,7 +3,7 @@ import '../css/Component-style.css';
 import Table from './Table';
 
 function Search() {
-  const [ showUsers, setShowUsers ] = useState([]);
+  const [ showUsers, setShowUsers ] = useState([]); 
   const [ allUsers, setAllUsers ] = useState([]);
   const [ searchInput, setSearchInput ] = useState("");
   
@@ -58,7 +58,7 @@ function Search() {
   function sortUsersDsc(ev){
     ev.preventDefault();
     console.log("sorting users-dsc")
-    const sortedUsers = showUsers.sort(function(a,b){
+    const sortedUsers = showUsers.sort((a,b) => {
       let nameA = a.name.toLowerCase();
       let nameB = b.name.toLowerCase();
         if(nameA < nameB )
@@ -69,6 +69,7 @@ function Search() {
     });
     setShowUsers([ ...sortedUsers])
   };
+  
   return (
     <>
     <form>
