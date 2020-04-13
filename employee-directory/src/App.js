@@ -15,7 +15,6 @@ function App() {
   );
 }
 
-//! nest table within form and then pass the searchValue into it
-// pass down event.target.value
+
 
 export default App;
